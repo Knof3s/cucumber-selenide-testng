@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Properties>
+        <Property name="logPath">target/logs</Property>
+        <Property name="rollingFileName">logfile.log</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d{dd-MM-yyyy HH:mm:ss} %c{1}: %L [%p] - %m%n}{
+                                   FATAL=BG_Red,
+                                   ERROR=red,
+                                   WARN=normal yellow,
+                                   INFO=normal blue,
+                                   DEBUG=normal green,
+                                   TRACE=MAGENTA}"
+                           disableAnsi="false"/>
+        </Console>
+        <RollingFile name="RollingFile" fileName="${logPath}/${rollingFileName}" filePattern="${logPath}/$${date:yyyy_MM}/log-%d{ddMMyyyy_HHmm}.log.zip">
+            <PatternLayout pattern="%highlight{%d{dd-MM-yyyy HH:mm:ss} %c{1}: %L [%p] - %m%n}{
+                                   FATAL=BG_Red,
+                                   ERROR=red,
+                                   WARN=normal yellow,
+                                   INFO=normal blue,
+                                   DEBUG=normal green,
+                                   TRACE=MAGENTA}"/>
+            <SizeBasedTriggeringPolicy size="5 MB" />
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="TRACE">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+    </Loggers>
+</Configuration>

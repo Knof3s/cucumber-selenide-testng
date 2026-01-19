@@ -1,0 +1,4 @@
+{{ with secret "dev/qa-auto/platform" }}
+test = {{ .Data.data.test}}
+test_page =  {{ .Data.data.demo_page}}
+{{ end }}

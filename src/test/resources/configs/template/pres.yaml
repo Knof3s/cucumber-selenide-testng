@@ -1,0 +1,6 @@
+{{ with secret "pres/qa-auto/platform" }}
+test = {{ .Data.data.test}}
+test_page =  {{ .Data.data.demo_page}}
+login =  {{ .Data.data.login}}
+password =  {{ .Data.data.password}}
+{{ end }}
